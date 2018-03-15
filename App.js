@@ -12,10 +12,6 @@ import {
   View
 } from 'react-native';
 
-import Kartu from './component/Kartu'
-import Timer from './component/Timer'
-
-
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -23,38 +19,20 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const Card = (props) => {
-  return (
-  <Text> 
-    {props.name}
-  </Text>
-  );
-  
-}
-
 
 export default class App extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {
-      name: 'ini state',
-    } 
-
-  }
-  
   render() {
     return (
       <View style={styles.container}>
-
-        <Card name={'ini props'}/>
-
-        <Kartu name={'ini props'}/>
-
-        <Card name={this.state.name} />
-
-        <Timer startWith={500}/>
-        
+        <Text style={styles.welcome}>
+          Welcome to React Native!
+        </Text>
+        <Text style={styles.instructions}>
+          To get started, edit App.js
+        </Text>
+        <Text style={styles.instructions}>
+          {instructions}
+        </Text>
       </View>
     );
   }
