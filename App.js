@@ -9,8 +9,16 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+  ScrollView
 } from 'react-native';
+
+import axios from 'axios'
+
+import Kartu from './component/Kartu'
+
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -20,19 +28,89 @@ const instructions = Platform.select({
 });
 
 
+
+class Bola extends Component {
+  constructor(props){
+    super(props)
+
+    this.state= {
+      bola: this.props.bola,
+      body: undefined,
+    }
+  }
+
+  rubahBola(){
+    const data = {
+      nama: this.state.nama,
+    }
+    this.setState({bola:'Ikan'})
+  }
+
+  componentWillMount(){
+    axios.get(`https://jsonplaceholder.typicode.com/posts`)
+      .then((response)=>{
+        // console.log("===============", response.data)
+        this.setState({
+          body: response.data
+        }) 
+        
+      })
+  }
+  render(){
+    if(typeof this.state.body === 'undefined'){
+      return(
+        <ActivityIndicator size="large" color="#0000ff"/>
+      )
+    } else {
+      console.log('========= ini ok', )
+
+    }
+    
+    return(
+      <ScrollView> 
+        <Text> ini state bola {this.state.bola}  </Text>
+        <Text> ini props bola {this.props.bola}  </Text>
+         {this.state.body.map((respone)=>{
+           return (
+             <Text key={respone.id}>{respone.body}</Text>
+           ) 
+        })} 
+
+        <TouchableOpacity onPress={()=>this.rubahBola()}> 
+          <Text> Rubah bola </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  }
+}
 export default class App extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      nama: 'Joni'
+    }
+    
+  }
+
+  rubah(){
+    this.setState({nama:"Budi"})
+  }
+
   render() {
+    
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <Text> Say hi ! {this.state.nama} </Text>
+
+        <TouchableOpacity onPress={()=>this.rubah()}> 
+          <View>
+            <Text> Rubah </Text>
+          </View>
+        </TouchableOpacity>
+
+        <Kartu name={'Remi'}/>
+        <Bola bola={'Bola'}/>
       </View>
     );
   }
