@@ -7,7 +7,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
 
-        // NOTE: Do not place your application dependencies here; they belong
+        // NOTE: Do not place your application dependencAAPT:Error retrieving parent for item: No resource found that matches the giveAAPT:Error retrieving parent for item: No resource found that matches the given name 'android:TextAppearance.Material.Widget.Button.Borderless.Colored'.n name 'android:TextAppearance.Material.Widget.Button.Borderless.Colored'.ies here; they belong
         // in the individual module build.gradle files
     }
 }
@@ -16,6 +16,9 @@ allprojects {
     repositories {
         mavenLocal()
         jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"

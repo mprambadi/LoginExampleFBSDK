@@ -18,6 +18,7 @@ import {
 import axios from 'axios'
 
 import Kartu from './component/Kartu'
+import LoginFB from './component/LoginFB'
 
 
 const instructions = Platform.select({
@@ -103,18 +104,20 @@ export default class App extends Component {
       <View style={styles.container}>
         <Text> Say hi ! {this.state.nama} </Text>
 
-        <TouchableOpacity onPress={()=>this.rubah()}> 
+        {/* <TouchableOpacity onPress={()=>this.rubah()}> 
           <View>
             <Text> Rubah </Text>
           </View>
-        </TouchableOpacity>
-
-        <Kartu name={'Remi'}/>
-        <Bola bola={'Bola'}/>
+        </TouchableOpacity> */}
+        
+        <LoginFB /> 
+        {/* <Kartu name={'Remi'}/> */}
+        {/* <Bola bola={'Bola'}/> */}
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
